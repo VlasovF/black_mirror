@@ -17,7 +17,7 @@ def dk(a: str, b: str) -> float:
 	l = len(a) + len(b)
 	c = l - len(set(a) - set(b))
 	if not c:
-		return 0.0
+		return 999.999
 	return (l - c) / c
 
 
