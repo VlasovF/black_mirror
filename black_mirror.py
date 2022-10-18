@@ -1,6 +1,6 @@
 # Autor: Vlasov Fedor
 # Created: 18.09.2022
-# Blac Mirror lib for AI
+# Black Mirror lib for AI
 
 def cs(s: str) -> str:
 	s = s.lower()
