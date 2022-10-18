@@ -89,6 +89,8 @@ class Mirror:
 			pv = self.lm
 			self.lm = self.next(self.lm, True)
 			self.fue.append(self.lm)
+			if not self.lm:
+				break
 		return self.lm.split(st)[0]
 
 	def requirement(self, m: str = '') -> str:
