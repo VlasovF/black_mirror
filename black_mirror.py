@@ -25,8 +25,6 @@ def gl(fn: str) -> list:
 	r = []
 	with open(fn, 'r') as f:
 		r = f.read().split('\n')
-	if r and not r[-1]:
-		r = r[:-1]
 	return r
 
 
