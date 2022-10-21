@@ -134,7 +134,7 @@ class Daemon:
 		return wbm.requirement(m)
 
 
-class Satana:
+class Robot:
 	ds = []
 
 	def __init__(self, mr: Mirror):
