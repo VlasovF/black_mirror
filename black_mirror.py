@@ -123,7 +123,7 @@ class Daemon:
 	def query(self, m: str):
 		wbm = None
 		cj = 1
-		mdk = 0.0
+		mdk = 999.999
 		for bm in bms:
 			d = abs(dk(m, bm.conclusion(m)) - cj)
 			if d < mdk:
