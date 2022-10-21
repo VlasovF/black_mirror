@@ -52,7 +52,7 @@ class Mirror:
 	mj = 0.666
 	se = 1
 	st = 0.13
-	lm = ''	
+	lm = ''
 	mem = []
 	fue = []
 
@@ -98,3 +98,14 @@ class Mirror:
 
 	def conclusion(self, m: str = '') -> str:
 		return self.query(m, '<!>')
+
+
+class BlackMirror:
+
+	def __init__(self, cr: ChineseRoom, mr: Mirror):
+		self.cr = cr
+		self.mr = mr
+
+	def query(self, m: str) -> str:
+		req = self.mr.requirement(m)
+		return self.cr.query(m)
