@@ -127,25 +127,3 @@ class Daemon:
 		i, d = md(cs, m, 1)
 		return self.bms[i].requirement(m) if i >= 0 else ''
 
-
-class Robot:
-	ds = []
-
-	def __init__(self, mr: Mirror):
-		self.mr = mr
-
-	def add(self, d: Daemon):
-		self.ds.append(d)
-
-	def query(self, m: str) -> str:
-		wd = None
-		cj = 1
-		mdk = 999
-		con = self.mr.conclusion(m)
-		for daemon in self.ds:
-			res = daemon.query(con)
-			d = abs(dk(con, res) - cj)
-			if d < mdk:
-				wd = daemon
-				mdk = diff
-		return wd.query(m)
