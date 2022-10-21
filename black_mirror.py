@@ -28,6 +28,15 @@ def gl(fn: str) -> list:
 	return r
 
 
+def md(lt: list, m: str, cj: float) -> (int, float):
+	if not lt:
+		return (-1, 999.999)
+	ds = [abs(dk(m, l) - cj) for l in lt]
+	ds = [(i, ds[i]) for i in range(len(ds))]
+	md = min(ds, key = lambda t: t[1])
+	return md
+
+
 class ChineseRoom:
 
 	def __init__(self, fn: str):
@@ -65,22 +74,15 @@ class Mirror:
 		self.mem = ls
 
 	def next(self, m: str, aj: bool = False) -> str:
-		md = 999
-		r = ''
-		for l in self.mem:
-			if l in self.fue:
-				continue
-			d = abs(dk(m, l) - self.cj)
-			if d < md:
-				md = d
-				r = l
+		ls = list(set(self.mem) - set(self.fue))
+		i, d = md(ls, m, self.cj)
 		if self.cj > self.mj:
 			self.se = -1
 		elif self.cj < 0.0:
 			self.se = 1
 		if aj:
 			self.cj += self.se * self.st
-		return r
+		return ls[i] if i >= 0 else ''
 
 	def query(self, m: str, st: str) -> str:
 		self.fue = []
@@ -120,18 +122,10 @@ class Daemon:
 	def add(self, bm: BlackMirror):
 		self.bms.append(bm)
 
-	def query(self, m: str):
-		wbm = None
-		cj = 1
-		mdk = 999
-		for bm in self.bms:
-			d = abs(dk(m, bm.conclusion(m)) - cj)
-			if d < mdk:
-				wbm = bm
-				mdk = d
-		if not wbm:
-			return ''
-		return wbm.requirement(m)
+	def query(self, m: str) -> str:
+		cs = [bm.conclusion(m) for bm in self.bms]
+		i, d = md(cs, m, 1)
+		return self.bms[i].requirement(m) if i >= 0 else ''
 
 
 class Robot:
