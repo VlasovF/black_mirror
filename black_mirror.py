@@ -106,7 +106,7 @@ class BlackMirror:
 		self.cr = cr
 		self.mr = mr
 
-	def answer(self, m: str) -> str:
+	def requirement(self, m: str) -> str:
 		req = self.mr.requirement(m)
 		return self.cr.query(m)
 
@@ -124,11 +124,34 @@ class Daemon:
 		wbm = None
 		cj = 1
 		mdk = 999.999
-		for bm in bms:
+		for bm in self.bms:
 			d = abs(dk(m, bm.conclusion(m)) - cj)
 			if d < mdk:
 				wbm = bm
 				mdk = d
 		if not wbm:
 			return ''
-		return wbm.answer(m)
+		return wbm.requirement(m)
+
+
+class Satana:
+	ds = []
+
+	def __init__(self, mr: Mirror):
+		self.mr = mr
+
+	def add(self, d: Daemon):
+		self.ds.append(d)
+
+	def query(self, m: str) -> str:
+		wd = None
+		cj = 1
+		mdk = 999.999
+		con = self.mr.conclusion(m)
+		for daemon in self.ds:
+			res = daemon.query(con)
+			d = abs(dk(con, res) - cj)
+			if d < mdk:
+				wd = daemon
+				mdk = diff
+		return wd.query(m)
