@@ -106,6 +106,29 @@ class BlackMirror:
 		self.cr = cr
 		self.mr = mr
 
-	def query(self, m: str) -> str:
+	def answer(self, m: str) -> str:
 		req = self.mr.requirement(m)
 		return self.cr.query(m)
+
+	def conclusion(self, m: str) -> str:
+		return self.mr.conclusion(m)
+
+
+class Daemon:
+	bms = []
+
+	def add(self, bm: BlackMirror):
+		self.bms.append(bm)
+
+	def query(self, m: str):
+		wbm = None
+		cj = 1
+		mdk = 0.0
+		for bm in bms:
+			d = abs(dk(m, bm.conclusion(m)) - cj)
+			if d < mdk:
+				wbm = bm
+				mdk = d
+		if not wbm:
+			return ''
+		return wbm.answer(m)
