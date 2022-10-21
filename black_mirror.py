@@ -119,11 +119,15 @@ class BlackMirror:
 class Daemon:
 	bms = []
 
+	def __init__(self, mr: Mirror):
+		self.mr = mr
+
 	def add(self, bm: BlackMirror):
 		self.bms.append(bm)
 
 	def query(self, m: str) -> str:
-		cs = [bm.conclusion(m) for bm in self.bms]
+		con = self.mr.conclusion(m)
+		cs = [bm.conclusion(con) for bm in self.bms]
 		i, d = md(cs, m, 1)
 		return self.bms[i].requirement(m) if i >= 0 else ''
 
