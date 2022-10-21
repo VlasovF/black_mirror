@@ -123,7 +123,7 @@ class Daemon:
 	def query(self, m: str):
 		wbm = None
 		cj = 1
-		mdk = 999.999
+		mdk = 999
 		for bm in self.bms:
 			d = abs(dk(m, bm.conclusion(m)) - cj)
 			if d < mdk:
@@ -146,7 +146,7 @@ class Robot:
 	def query(self, m: str) -> str:
 		wd = None
 		cj = 1
-		mdk = 999.999
+		mdk = 999
 		con = self.mr.conclusion(m)
 		for daemon in self.ds:
 			res = daemon.query(con)
