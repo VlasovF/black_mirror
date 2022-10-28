@@ -33,8 +33,7 @@ def md(lt: list, m: str, cj: float) -> (int, float):
 		return (-1, 999.999)
 	ds = [abs(dk(m, l) - cj) for l in lt]
 	ds = [(i, ds[i]) for i in range(len(ds))]
-	md = min(ds, key = lambda t: t[1])
-	return md
+	return  min(ds, key = lambda t: t[1])
 
 
 class ChineseRoom:
@@ -52,8 +51,8 @@ class ChineseRoom:
 			c = len(iw & lw)
 			if c > mc:
 				mc = c
-				r = l.split('<&>')[-1].strip()
-		return r
+				r = l
+		return r.split('&')[-1].strip()
 
 
 class Mirror:
@@ -130,4 +129,3 @@ class Daemon:
 		cs = [bm.conclusion(con) for bm in self.bms]
 		i, d = md(cs, m, 1)
 		return self.bms[i].requirement(m) if i >= 0 else ''
-
